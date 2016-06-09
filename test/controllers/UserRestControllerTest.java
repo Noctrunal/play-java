@@ -1,6 +1,5 @@
 package controllers;
 
-import controllers.routes;
 import models.Role;
 import models.User;
 import org.junit.After;
@@ -23,10 +22,11 @@ import static play.test.Helpers.route;
  * JUnit tests for REST Controller
  */
 public class UserRestControllerTest extends WithApplication {
-
-
     private Database database;
 
+    /**
+     * set up and populate database before test
+     **/
     @Before
     public void setUp() {
         database = Databases.createFrom(
@@ -50,12 +50,17 @@ public class UserRestControllerTest extends WithApplication {
         user.save();
     }
 
+    /**
+     * shutdown database after test
+     **/
     @After
     public void shutDown() {
         database.shutdown();
     }
 
-
+    /**
+     * get user by id
+     **/
     @Test
     public void get() {
         Result result = route(routes.UserRestController.get(1));
