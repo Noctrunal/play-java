@@ -1,0 +1,31 @@
+RESTful application using Play Framework and Ebean ORM
+
+Url: http://localhost:9000/users
+
+Database: H2
+
+Columns: users, roles, user_roles
+
+Relationship: @ManyToMany
+
+Methods: GET / POST / PUT / DELETE
+
+Curl commands:
+
+POST       201(created)
+curl -i -X POST -H "Content-Type:application/json" http://localhost:9000/users -d '{"name":"New Name", "login": "New Login", "password": "New password", "roles":[{"name":"ROLE_NAME"}]}'
+
+POST       400(bad request)
+curl -i -X POST -H "Content-Type:application/json" http://localhost:9000/users -d '{"login": "New Login", "password": "New password", "roles":[{"name":"ROLE_NAME"}]}'
+
+PUT        200(ok)
+curl -v -H "Content-Type:application/json" -X PUT http://localhost:9000/users/user/1 -d '{"id":1, "name":"Updated Name", "login":"New Login", "password":"New password", "roles":[{"name":"ROLE_NAME"}]}'
+
+PUT        404(not found)
+curl -v -H "Content-Type:application/json" -X PUT http://localhost:9000/users/user/0 -d '{"id":1, "name":"Updated Name", "login":"New Login", "password":"New password", "roles":[{"name":"ROLE_NAME"}]}'
+
+GET        200(ok)
+curl -v -H "Accept:application/json" http://localhost:9000/users/user/1
+
+DELETE     200(ok)
+curl -v -X DELETE http://localhost:9000/users/user/1

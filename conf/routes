@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+
+POST          /users                 controllers.UserRestController.save()
+
+GET           /users                 controllers.UserRestController.all()
+
+GET           /users/user/:id        controllers.UserRestController.get(id: Int)
+
+PUT           /users/user/:id        controllers.UserRestController.update(id: Int)
+
+DELETE        /users/user/:id        controllers.UserRestController.delete(id: Int)
